@@ -1,0 +1,21 @@
+.about-page {
+    margin: 2rem 6rem;
+    height: 100%;
+}
+
+.about-topic {
+    font-size: 50px;
+    font-weight: bold;
+}
+
+.about-description {
+    font-size: 20px;
+    line-height: 1.6;
+}
+
+.contact-topic {
+    font-size: 30px;
+    font-weight: bold;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+}

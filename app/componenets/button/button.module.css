@@ -1,0 +1,29 @@
+.primary{
+    color: green;
+    background-color: greenyellow;
+}
+
+.secondary{
+    color: red;
+    background-color: lightcoral;
+}
+
+.btn {
+    margin-top: 1rem;
+    margin-right: 2rem;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    border: 0.1rem solid;
+    cursor: pointer;
+    font-size: 20px;
+    transition: 0.3s;
+}
+
+.btn:hover {
+    opacity: 0.8;
+    background-color: white;
+}
+
+.fullWidth{
+    width: 100%;
+}

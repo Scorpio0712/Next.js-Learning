@@ -1,0 +1,31 @@
+.headerMain {
+    background-color: black;
+    color: white;
+}
+
+.headerNav {
+    display: flex;
+    padding: 20px 60px;
+    justify-content: space-between;
+}
+
+.headerTopic {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.navList {
+    display: flex;
+}
+
+.navList a {
+    text-decoration: none;
+    font-size: 16px;
+    margin-left: 20px;
+    transition: 0.3s;
+}
+
+.navList a:hover {
+    color: red;
+    cursor: pointer;
+}
