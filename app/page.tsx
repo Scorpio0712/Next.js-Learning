@@ -6,31 +6,40 @@ import { clear } from "console";
 
 export default function HomePage() {
   const [currentSlide, setCurrentSlide] = useState(0);
-  const [isPLaying, setIsPlaying] = useState(true);
+  const [isPlaying] = useState(true);
+  const [fade, setFade] = useState(true);
 
   // Image data for the carousel
   const images = [{ src: '/images/pexels-jasper-hunter-692558448-17994861.jpg', alt: 'Beautiful coral reef', title: 'Beautiful Coral Reef' }, { src: '/images/pexels-valeriya-34759410.jpg', alt: 'Marine Life', title: 'Marine Life' }];
 
   // Previous slide function
   const prevSlide = () => {
-    setCurrentSlide((prev) => (prev === 0 ? images.length - 1 : prev - 1));
+    setFade(false);
+    setTimeout(() => {
+      setCurrentSlide((prev) => (prev === 0 ? images.length - 1 : prev - 1));
+      setFade(true);
+    }, 300);
   }
 
   // Next slide function
   const nextSlide = () => {
-    setCurrentSlide((prev) => (prev === images.length - 1 ? 0 : prev + 1));
+    setFade(false);
+    setTimeout(() => {
+      setCurrentSlide((prev) => (prev === images.length - 1 ? 0 : prev + 1));
+      setFade(true);
+    }, 300);
   }
 
   //Auto Slide Play Function
   useEffect(() => {
-    if(!isPLaying) return;
+    if(!isPlaying) return;
 
     const interval = setInterval(() => {
       nextSlide();
     }, 3000); // Change slide every 3 seconds
 
     return () => clearInterval(interval);
-  }, [currentSlide, isPLaying]);
+  }, [currentSlide]);
 
   return (
     <div className="home-container">
@@ -64,7 +73,7 @@ export default function HomePage() {
 
         <div className="carousel-container">
           <button className="carousel-btn prev" onClick={prevSlide}>❮</button>
-          <div className="carousel-slide">
+          <div className={`carousel-slide ${fade ? 'fade-in' : 'fade-out'}`}>
             <Image src={images[currentSlide].src} alt={images[currentSlide].alt} width={500} height={350} className='carousel-image' />
             <div className="carousel-caption">
               <h3>{images[currentSlide].title}</h3>
