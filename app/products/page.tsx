@@ -8,12 +8,7 @@ import Card from '../componenets/card/card'
 function ProductPage() {
     return (
         <div className='product-main'>
-            <section className='hero'>
-                <div className="hero-content">
-                    <h1 className="hero-title">Our Products</h1>
-                    <p className="hero-subtitle">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eaque, fuga?</p>
-                </div>
-            </section><br />
+            <br />
             <p className='product-detail'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum suscipit tempore itaque repellat, earum ratione quis est consequuntur,
                 sequi doloribus nisi cumque eveniet, voluptatem consectetur debitis ducimus nulla.
                 Repellat velit quibusdam impedit consectetur accusamus ad sed. Veritatis officia corrupti ad ipsum neque corporis in aut maxime? Animi, corrupti quo? Ut.</p>

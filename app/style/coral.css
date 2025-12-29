@@ -1,0 +1,72 @@
+.coral-topic {
+    text-align: center;
+    font-weight: bold;
+    font-size: 36px;
+    margin-top: 2rem;
+}
+
+.coral-gallery {
+    margin-top: 3rem;
+    text-align: center;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+}
+
+.coral-card {
+    text-align: center;
+}
+
+.coral-card img {
+    border-radius: 15px;
+    border: 5px solid #ff6b6b;
+    box-shadow: 0 10px 30px rgba(255, 107, 107, 0.4);
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.coral-card img:hover {
+    transform: scale(1.05);
+    box-shadow: 0 15px 40px rgba(255, 107, 107, 0.6);
+    border-color: #ff4757;
+}
+
+.coral-title {
+    color: #ff6b6b;
+    font-size: 24px;
+    font-weight: bold;
+    margin-top: 1rem;
+    text-shadow: 2px 2px 4px rgba(255, 107, 107, 0.2);
+}
+
+.image-wrapper {
+    position: relative;
+    display: inline-block;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to top, rgba(255, 107, 107, 0.9), transparent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    border-radius: 15px;
+}
+
+.image-wrapper:hover .overlay {
+    opacity: 1;
+}
+
+.overlay p {
+    color: white;
+    font-size: 28px;
+    font-weight: bold;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+    margin: 0;
+}
