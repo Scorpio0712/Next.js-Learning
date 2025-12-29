@@ -2,37 +2,47 @@
 import Image from "next/image";
 import { useState, useEffect } from "react";
 import './style/home.css';
-import { clear } from "console";
 
 export default function HomePage() {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isPlaying] = useState(true);
-  const [fade, setFade] = useState(true);
+  const [isTransitioning, setIsTransitioning] = useState(false);
 
   // Image data for the carousel
   const images = [{ src: '/images/pexels-jasper-hunter-692558448-17994861.jpg', alt: 'Beautiful coral reef', title: 'Beautiful Coral Reef' }, { src: '/images/pexels-valeriya-34759410.jpg', alt: 'Marine Life', title: 'Marine Life' }];
 
   // Previous slide function
   const prevSlide = () => {
-    setFade(false);
-    setTimeout(() => {
-      setCurrentSlide((prev) => (prev === 0 ? images.length - 1 : prev - 1));
-      setFade(true);
-    }, 300);
+    setIsTransitioning(true);
+    setCurrentSlide((prev) =>  prev - 1);
   }
 
   // Next slide function
   const nextSlide = () => {
-    setFade(false);
-    setTimeout(() => {
-      setCurrentSlide((prev) => (prev === images.length - 1 ? 0 : prev + 1));
-      setFade(true);
-    }, 300);
+    setIsTransitioning(true);
+    setCurrentSlide((prev) => prev + 1);
   }
+
+  //Reset Position
+  useEffect(() => {
+    if (currentSlide === images.length) {
+      setTimeout(() => {
+        setIsTransitioning(false); //Close Transition
+        setCurrentSlide(0); //Reset to first slide(without transition)
+      }, 600);
+    }
+
+    if (currentSlide === -1) {
+      setTimeout(() => {
+        setIsTransitioning(false); //Close Transition
+        setCurrentSlide(images.length - 1); //Reset to last slide(without transition)
+      }, 600);
+    }
+  })
 
   //Auto Slide Play Function
   useEffect(() => {
-    if(!isPlaying) return;
+    if (!isPlaying) return;
 
     const interval = setInterval(() => {
       nextSlide();
@@ -73,18 +83,33 @@ export default function HomePage() {
 
         <div className="carousel-container">
           <button className="carousel-btn prev" onClick={prevSlide}>❮</button>
-          <div className={`carousel-slide ${fade ? 'fade-in' : 'fade-out'}`}>
-            <Image src={images[currentSlide].src} alt={images[currentSlide].alt} width={500} height={350} className='carousel-image' />
-            <div className="carousel-caption">
-              <h3>{images[currentSlide].title}</h3>
+
+          <div className="carousel-track">
+            <div className='carousel-slide-wrapper' style={{ transform: `translateX(-${currentSlide * 100}%)`, transition: isTransitioning ? 'transform 0.6s ease-in-out' : 'none' }}>
+              {images.map((image, index) => (
+                <div key={index} className="carousel-slide-item">
+                  <Image src={image.src} alt={image.alt} width={500} height={350} className='carousel-image' />
+                  <div className="carousel-caption">
+                    <h3>{image.title}</h3>
+                  </div>
+                </div>
+              ))}
+              {/* Duplicate first slide for infinite loop effect */}
+              <div className="carousel-slide-item">
+                <Image src={images[0].src} alt={images[0].alt} width={500} height={350} className='carousel-image' />
+                <div className="carousel-caption">
+                  <h3>{images[0].title}</h3>
+                </div>
+              </div>
             </div>
           </div>
+
           <button className="carousel-btn next" onClick={nextSlide}>❯</button>
         </div>
         {/* Dots Indicators */}
         <div className="carousel-dots">
-          {images.map((_, index) => (<button key={index} className={`dot ${currentSlide === index ? 'active' : ''}`}
-            onClick={() => setCurrentSlide(index)}
+          {images.map((_, index) => (<button key={index} className={`dot ${currentSlide % images.length === index ? 'active' : ''}`}
+            onClick={() => { setIsTransitioning(true); setCurrentSlide(index); }}
           />))}
         </div>
       </section>
