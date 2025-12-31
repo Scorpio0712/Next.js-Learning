@@ -16,6 +16,8 @@ export default function HomePage() {
       <h1>Learning List:</h1>
       <ul>
         <li><Link href="/column-row">Column Row Page</Link></li>
+        <li><Link href="/button">Button Page</Link></li>
+        <li><Link href="/contact">Contact Form Page</Link></li>
         <li><Link href="/card">Card Page</Link></li>
         <li><Link href="/imagesEx">Images Page</Link></li>
         <li><Link href="/carousel">Carousel Page</Link></li>
